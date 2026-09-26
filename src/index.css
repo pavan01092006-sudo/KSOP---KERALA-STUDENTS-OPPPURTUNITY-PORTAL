@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --brand-teal: #0d7c70;
+    --brand-teal-dark: #08564e;
+    --brand-teal-light: #e6f5f3;
+    --brand-gold: #e28b22;
+    --brand-gold-light: #fef5ea;
+    --bg-main: #fbfbf9;
+    --text-main: #1e293b;
+    color-scheme: light;
+  }
+
+  .dark {
+    --brand-teal: #14b8a6;
+    --brand-teal-dark: #0d7c70;
+    --brand-teal-light: #132a27;
+    --brand-gold: #f59e0b;
+    --brand-gold-light: #2c2010;
+    --bg-main: #0b111e;
+    --text-main: #f8fafc;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* When viewing in Malayalam, prefer Malayalam readable fonts */
+  [lang="ml"], .font-malayalam {
+    font-family: 'Manjari', 'Plus Jakarta Sans', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+}
+
+/* Animations for hero elements */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbitSpin 35s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Glassmorphism card styles */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(13, 124, 112, 0.12);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(20, 184, 166, 0.18);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(13, 124, 112, 0.3);
+  box-shadow: 0 16px 32px -8px rgba(13, 124, 112, 0.12);
+}
+
+.dark .glass-panel-hover:hover {
+  border-color: rgba(20, 184, 166, 0.4);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom scrollbar for clean horizontal tab lists */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Clean Print / PDF rules for AI Portfolio output */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header, footer, nav, button, .dialog-close, #toast, .no-print {
+    display: none !important;
+  }
+
+  #portfolio-printable {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  #portfolio-printable * {
+    color: #000000 !important;
+    border-color: #cbd5e1 !important;
+    background-color: transparent !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+}

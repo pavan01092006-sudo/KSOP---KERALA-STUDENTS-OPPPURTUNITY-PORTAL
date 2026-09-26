@@ -1,0 +1,6 @@
+{
+  "name": "KSOP – Kerala Student Opportunity Platform",
+  "description": "Kerala Student Opportunity Platform: Scholarships, internships, hackathons, certifications, and government schemes tailored for students across Kerala's 14 districts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
